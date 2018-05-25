@@ -34,6 +34,11 @@ public class CriarAlarmeActivity extends Activity {
         editHora = (TimePicker) findViewById(R.id.timePicker);
         editData = (CalendarView) findViewById(R.id.calendarView);
 
+          AlarmManager alarm = (AlarmManager) this.getSystemService(Context.ALARM_SERVICE);
+        Calendar cal = Calendar.getInstance();
+        cal.add(Calendar.MINUTE, 1);
+        PendingIntent intent = PendingIntent.getActivity(this, 999, new Intent(this, ListaActivity.class), PendingIntent.FLAG_UPDATE_CURRENT);
+        alarm.set(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), intent);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.M)
